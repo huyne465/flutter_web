@@ -1,0 +1,237 @@
+{ "title": {
+    "welcomeKHB": "Welcome to ",
+    "KHB": "GREETING",
+    "chooseContent": "Below are the available options. Please select one to continue.",
+
+    "welcome": "WELCOME TO MY WEBSITE",
+
+    "hello": "Hello,\nWelcome to\nMY WEB SITE",
+
+    "enterAccountTitle": "Enter account to log in",
+
+    "registerAccountTitle": "Register an account",
+
+    "titleContent": "We currently provide free educational information lookup and support services for everyone.\nIf you need further assistance, tap the icon below to chat with us.",
+
+    "searchTitle": "Search student information",
+
+    "noStudents": "No students are being supervised",
+
+    "transcript": "Lookup Academic Record",
+    "transcriptDetail": "For parents or supervisors",
+    "verify": "Verify Academic Record",
+    "verifyDetail": "For individuals or organizations verifying digital records"
+
+  },
+
+    "guide": {
+    "titleTranscript": "Instructions for Academic Record Lookup",
+    "titleVerify": "Instructions for Academic Record Verification",
+    "step1": "Step 1: Enter the student’s information into the corresponding fields.",
+    "step2Trans": "Step 2: Enter the verification code and press the “Lookup” button to search the record with the entered information.",
+    "step2Ver": "Step 2: Enter the verification code and press the “Verify Record” button to verify the record with the entered information.",
+    "step3": "Step 3: The screen will display detailed academic record information."
+    },
+
+
+
+  "appBar": {
+
+    "studentInfoDetail": "Student Information",
+
+    "setting": "Settings",
+
+    "aiChat": "Smart Support",
+
+    "supervisedList": "Supervised Student List"
+
+  },
+
+
+  "hintTextField": {
+
+    "hintAccountLogin": "Account",
+
+    "hintPasswordLogin": "Password",
+
+    "hintFullName": "Enter Full Name",
+
+    "hintDateOfBirth": "Date of Birth",
+
+    "hintGender": "Gender",
+
+    "hintAccountRegister": "Enter username",
+
+    "hintPasswordRegister": "Enter password",
+
+    "hintSearch": "ID Card or Personal ID",
+
+    "hintAIChat": "How can we help you?",
+    "hintPersonalId": "Enter Personal ID",
+    "hintGuardian": "Enter guardian's name",
+    
+    "hintGuardianPhone": "Enter guardian's phone number",
+    "captcha": "Verification Code",
+    "hintCaptcha": "Enter verification code"
+  },
+
+  "upload": {
+    "attachment": "Attachment",
+    "chooseFromDevice": "+ Choose file from device"
+},
+
+
+  "genderChoose": {
+
+    "male": "Male",
+
+    "female": "Female",
+
+    "other": "Other"
+
+  },
+
+
+  "studentInfo": {
+
+    "personalId": "Personal ID",
+
+    "fullName": "Full Name",
+
+    "dateOfBirth": "Date of Birth",
+
+    "nationality": "Nationality",
+
+    "gender": "Gender",
+
+    "viewDetail": "View Details",
+
+    "ethnicity": "Ethnicity",
+
+    "address": "Address",
+
+    "hometown": "Hometown",
+
+    "placeOfBirth": "Place of Birth",
+
+    "fatherName": "Father's Name",
+
+    "fatherJob": "Father's Occupation",
+
+    "motherName": "Mother's Name",
+
+    "motherJob": "Mother's Occupation",
+    "guardianName": "Guardian's Name",
+    "guardianPhone": "Guardian's phone number",
+    "educationLevel": "Education Level",
+    "createdDate": "Created Date",
+    "school": "School"
+
+  },
+
+
+  "dialog": {
+
+    "error": "Error",
+
+    "errorMessage": "An error occurred. Please try again later.",
+
+    "registerMessage": "You have successfully registered an account",
+
+    "account": "Account:",
+
+    "password": "Password:",
+
+    "logout": "Log out",
+
+    "logoutMessage": "Do you want to log out from this device?",
+
+    "supervision": "Supervision",
+
+    "supervisionDeleteMessage": "Are you sure you want to remove this student from the supervision list?",
+
+    "deleteAccount": "Delete account",
+
+    "deleteAccountMessage": "Are you sure you want to delete this account?\nWe will delete all your information.\nAll data will not be recoverable.\nAre you sure?",
+
+    "confirm": "Confirm",
+
+    "cancel": "Cancel"
+
+  },
+
+
+  "toast": {
+
+    "searchSuccessfully": "Search successful",
+
+    "searchFailed": "Student information not found",
+
+    "enterPersonalId": "Please enter personal ID",
+    "enterDateOfBirth": "Please enter date of birth",
+
+    "superviseAdd": "Added to supervision",
+
+    "superviseDelete": "Removed from supervision",
+
+    "deleteAccountSuccessfully": "Account deleted successfully",
+
+    "deleteAccountFailed": "Account deletion failed",
+
+    "requiredFields": "Please fill in all required information",
+
+    "enterFullName": "Please enter your full name",
+
+    "enterUsername": "Please enter your username",
+
+    "enterPassword": "Please enter your password",
+
+    "registerSuccessfully": "Registration successful",
+
+    "loginSuccessfully": "Login successful"
+
+  },
+
+
+  "loading": "Loading, please wait",
+
+
+  "bottomSheet": {
+
+    "genderTitle": "Select gender",
+
+    "select": "Select",
+
+    "cancel": "Cancel"
+
+  },
+
+
+  "button": {
+
+    "login": "Log in",
+
+    "register": "Register",
+
+    "registerAccount": "Register an account →",
+
+    "superviseAdd": "Add to supervision",
+
+    "superviseDelete": "Remove from supervision",
+
+    "close": "Close",
+
+    "supervisionManagement": "Supervision Management",
+
+    "theme": "Theme",
+
+    "language": "Language",
+
+    "deleteAccount": "Delete account",
+
+    "logoutAccount": "Log out",
+    "lookup": "Lookup",
+    "verify": "Verify"
+  }
+
+}

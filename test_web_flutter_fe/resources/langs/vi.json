@@ -1,0 +1,143 @@
+{   "title":    {
+        "welcomeKHB": "Chào mừng đến với ",
+        "KHB": "Kho Học Bạ",
+        "chooseContent": "DƯới đây là các tùy chọn, vui lòng chọn một để tiếp tục nhé!",
+        "welcome": "Chào mừng đến với Học Bạ Số",
+        "hello": "Xin chào,\nChào mừng bạn đến với\nHọc Bạ Số",
+        "enterAccountTitle": "Nhập tài khoản để đăng nhập",
+        "registerAccountTitle": "Đăng ký tài khoản",
+        "titleContent": "Hiện tại chúng tôi đang cung cấp dịch vụ tra cứu, hỗ trợ thông tin giáo dục miễn phí cho tất cả mọi người.",
+        "searchTitle": "Tìm kiếm thông tin học sinh",
+        "noStudents": "Không có học sinh nào được giám sát",
+        "transcript": "Tra cứu học bạ",
+        "transcriptDetail": "Dành cho phụ huynh học sinh hoặc người giám thị",
+        "verify": "Xác thực học bạ",
+        "verifyDetail": "Dành cho cá nhân hoặc đơn vị xác nhận học bạ số"
+    },
+
+    "guide": {
+        "titleTranscript": "Hướng dẫn tra cứu học bạ",
+        "titleVerify": "Hướng dẫn xác thực học bạ",
+        "step1": "Bước 1: Nhập các thông tin của học sinh cần tra cứu vào các ô tương ứng.",
+        "step2Trans": "Bước 2: Nhập Mã xác nhận và nhấn vào nút “Tra cứu” để tra cứu học bạ với thông tin đã nhập.",
+        "step2Ver": "Bước 2: Nhập Mã xác nhận và nhấn vào nút “Xác thực học bạ” để xác thực học bạ với thông tin đã nhập.",
+        "step3": "Bước 3: Màn hình sẽ hiển thị thông tin chi tiết về học bạ."
+    },
+
+
+    "appBar": {
+        "studentInfoDetail": "Thông tin học sinh",
+        "setting": "Cài đặt",
+        "aiChat": "Hỗ trợ thông minh",
+        "supervisedList": "Danh sách học sinh giám sát"
+    },
+
+    "hintTextField": {
+        "hintAccountLogin": "Tài khoản",
+        "hintPasswordLogin": "Mật khẩu",
+        "hintFullName": "Nhập họ và tên",
+        "hintDateOfBirth": "Ngày sinh",
+        "hintGender": "Giới tính",
+        "hintAccountRegister": "Nhập tên tài khoản",
+        "hintPasswordRegister": "Nhập mật khẩu",
+        "hintSearch": "CMND/CCCD hoặc Mã định danh",
+        "hintAIChat": "Bạn cần hỗ trợ gì?",
+        "hintPersonalId": "Nhập mã định danh",
+        "hintGuardian": "Nhập tên phụ huynh/giám hộ",
+        "hintGuardianPhone": "Nhập số điện thoại",
+        "captcha": "Mã xác nhận",
+        "hintCaptcha": "Nhập mã xác nhận"
+        
+    },
+
+    "upload": {
+        "attachment": "Tập tin đính kèm",
+        "chooseFromDevice": "+ Chọn tệp từ thiết bị"
+    },
+
+
+    "genderChoose": {
+        "male": "Nam",
+        "female": "Nữ",
+        "other": "Khác"
+    },
+
+    "studentInfo": {
+        "personalId": "Mã định danh",
+        "fullName": "Họ tên",
+        "dateOfBirth": "Ngày sinh",
+        "nationality": "Quốc tịch",
+        "gender": "Giới tính",
+        "viewDetail": "Xem chi tiết",
+        "ethnicity": "Dân tộc",
+        "address": "Địa chỉ",
+        "hometown": "Quê quán",
+        "placeOfBirth": "Nơi sinh",
+        "fatherName": "Tên cha",
+        "fatherJob": "Nghề nghiệp cha",
+        "motherName": "Tên mẹ",
+        "motherJob": "Nghề nghiệp mẹ",
+        "guardianName": "Tên phụ huynh/giám hộ",
+        "guardianPhone": "Số điện thoại",
+        "educationLevel": "Bậc học",
+        "createdDate": "Ngày tạo",
+        "school": "Trường"
+    },
+
+    "dialog": {
+        "error": "Lỗi",
+        "errorMessage": "Đã có lỗi xảy ra, vui lòng thử lại sau.",
+        "registerMessage": "Bạn đã đăng ký thành công tài khoản",
+        "account": "Tài khoản:",
+        "password": "Mật khẩu:",
+        "logout": "Đăng xuất",
+        "logoutMessage": "Bạn muốn đăng xuất khỏi thiết bị này",
+        "supervision": "Giám sát",
+        "supervisionDeleteMessage": "Bạn có chắc muốn xóa học sinh này khỏi danh sách giám sát?",
+        "deleteAccount": "Xóa tài khoản",
+        "deleteAccountMessage": "Bạn có chắc muốn xóa tài khoản này?\nChúng tôi sẽ xóa tất cả thông tin của bạn.\nTất cả dữ liệu sẽ không được khôi phục lại.\nBạn có chắc chứ?",
+        "confirm": "Đồng ý",
+        "cancel": "Hủy bỏ"
+    },
+
+    "toast": {
+        "searchSuccessfully": "Tìm kiếm thành công",
+        "searchFailed": "Không tìm thấy thông tin học sinh",
+        "enterPersonalId": "Vui lòng nhập mã định danh",
+        "enterDateOfBirth": "Vui lòng nhập ngày sinh",
+        "superviseAdd": "Đã thêm vào giám sát",
+        "superviseDelete": "Đã xóa khỏi giám sát",
+        "deleteAccountSuccessfully": "Xóa tài khoản thành công",
+        "deleteAccountFailed": "Xóa tài khoản thất bại",
+        "requiredFields": "Vui lòng nhập đầy đủ thông tin",
+        "enterFullName": "Vui lòng nhập họ và tên",
+        "enterUsername": "Vui lòng nhập tên đăng nhập",
+        "enterPassword": "Vui lòng nhập mật khẩu",
+        "registerSuccessfully": "Đăng ký thành công",
+        "loginSuccessfully": "Đăng nhập thành công"
+    },
+
+    "loading": "Đang tải vui lòng đợi",
+
+    "bottomSheet": {
+        "genderTitle": "Chọn giới tính",
+        "select": "Chọn",
+        "cancel": "Hủy"
+    },
+
+    "button": {
+        "login": "Đăng nhập",
+        "register": "Đăng ký",
+        "registerAccount": "Đăng ký tài khoản →",
+        "superviseAdd": "Thêm vào giám sát",
+        "superviseDelete": "Xóa khỏi giám sát",
+        "close": "Đóng",
+        "supervisionManagement": "Quản lý giám sát",
+        "theme": "Giao diện",
+        "language": "Ngôn ngữ",
+        "deleteAccount": "Xóa tài khoản",
+        "logoutAccount": "Đăng xuất",
+        "lookup": "Tra cứu",
+        "verify": "Xác thực"
+    }
+}
