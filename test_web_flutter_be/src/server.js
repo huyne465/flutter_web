@@ -26,6 +26,18 @@ app.use(cors({
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
 
+
+    // Session middleware (cần cho Passport)
+  app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false, // Set true nếu dùng HTTPS
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+  }))
+
   // Test route
   app.get('/api/auth/test', (req, res) => { 
     res.json({

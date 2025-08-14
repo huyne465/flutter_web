@@ -107,11 +107,47 @@ const getUserById = async (req, res) => {
   }
 }
 
+
+
+// Google OAuth Success
+const googleSuccess = async (req, res) => {
+  try {
+    const user = req.user
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: 'Google authentication failed'
+      })
+    }
+
+    // Generate JWT token
+    const token = jwtUtils.generateJWT(user)
+
+    // Remove sensitive data
+    const { password, googleId, ...userResponse } = user.toObject()
+
+    // Redirect to frontend with token
+    res.redirect(`http://localhost:8080/auth/success?token=${token}&user=${encodeURIComponent(JSON.stringify(userResponse))}`)
+    
+  } catch (error) {
+    console.error('Google auth success error:', error)
+    res.redirect('http://localhost:8080/auth/error?message=Authentication failed')
+  }
+}
+
+// Google OAuth Failure
+const googleFailure = (req, res) => {
+  res.redirect('http://localhost:8080/auth/error?message=Google authentication failed')
+}
+
+
 export const authController = {
   createUser,
   loginUser,
   getAllUsers,
-  getUserById
+  getUserById,
+  googleSuccess,
+  googleFailure
 };
 
 

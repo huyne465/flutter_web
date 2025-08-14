@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:test_web_flutter_fe/core/clean_arch_setup/extension/view_abs.dart';
 import 'package:test_web_flutter_fe/core/extension/str_ext.dart';

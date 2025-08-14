@@ -11,13 +11,13 @@ import 'package:test_web_flutter_fe/module/startup/login/domain/usecase/register
 class RegisterViewModel extends AppViewModel {
   final _showPassword = false.obs;
   final _showConfirmPassword = false.obs;
-  final _enableRegister = false.obs;
+  final _enableRegister = true.obs;
   final _isLoading = false.obs;
 
   bool get showPassword => _showPassword.value;
   bool get showConfirmPassword => _showConfirmPassword.value;
-  bool get enableRegister => _enableRegister.value;
   bool get isLoading => _isLoading.value;
+  bool get enableRegister => _enableRegister.value;
 
   final _usernameTextController = TextEditingController();
   final _emailTextController = TextEditingController();
@@ -47,44 +47,56 @@ class RegisterViewModel extends AppViewModel {
 
   void _setupFormValidation() {
     // Listen to all text controllers for form validation
-    _usernameTextController.addListener(_validateForm);
-    _emailTextController.addListener(_validateForm);
-    _passwordTextController.addListener(_validateForm);
-    _confirmPasswordTextController.addListener(_validateForm);
-    _fullNameTextController.addListener(_validateForm);
+    _usernameTextController.addListener(() {
+      _validateForm();
+    });
+    _emailTextController.addListener(() {
+      _validateForm();
+    });
+    _passwordTextController.addListener(() {
+      _validateForm();
+    });
+    _confirmPasswordTextController.addListener(() {
+      _validateForm();
+    });
+    _fullNameTextController.addListener(() {
+      _validateForm();
+    });
+    _displayNameTextController.addListener(() {
+      _validateForm();
+    });
   }
 
   void _validateForm() {
     final isValid =
-        _usernameTextController.text.isNotEmpty &&
-        _emailTextController.text.isNotEmpty &&
+        _usernameTextController.text.trim().isNotEmpty &&
+        _emailTextController.text.trim().isNotEmpty &&
         _passwordTextController.text.isNotEmpty &&
         _confirmPasswordTextController.text.isNotEmpty &&
-        _fullNameTextController.text.isNotEmpty &&
-        _isValidEmail(_emailTextController.text) &&
+        _fullNameTextController.text.trim().isNotEmpty &&
+        _isValidEmail(_emailTextController.text.trim()) &&
         _passwordTextController.text == _confirmPasswordTextController.text &&
         _passwordTextController.text.length >= 6;
-
     _enableRegister.value = isValid;
   }
 
   bool _isValidEmail(String email) {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+    if (email.isEmpty) return false;
+    // Simplified email validation - just check for @ and domain
+    return email.contains('@') && email.contains('.') && email.length > 5;
   }
 
-  Future<Unit> onShowPassword() async {
-    _showPassword.value = !_showPassword.value;
+  Future<Unit> onShowPassword(bool value) async {
+    _showPassword.value = value;
     return unit;
   }
 
-  Future<Unit> onShowConfirmPassword() async {
-    _showConfirmPassword.value = !_showConfirmPassword.value;
+  Future<Unit> onShowConfirmPassword(bool value) async {
+    _showConfirmPassword.value = value;
     return unit;
   }
 
   Future<Unit> onRegister() async {
-    if (!enableRegister) return unit;
-
     _isLoading.value = true;
 
     await run(
@@ -93,7 +105,9 @@ class RegisterViewModel extends AppViewModel {
           username: _usernameTextController.text.trim(),
           email: _emailTextController.text.trim(),
           password: _passwordTextController.text,
-          fullName: _fullNameTextController.text.trim(),
+          fullName: _fullNameTextController.text.trim().isEmpty
+              ? _usernameTextController.text.trim()
+              : _fullNameTextController.text.trim(),
           displayName: _displayNameTextController.text.trim().isEmpty
               ? _usernameTextController.text.trim()
               : _displayNameTextController.text.trim(),
@@ -156,12 +170,22 @@ class RegisterViewModel extends AppViewModel {
 
   @override
   void onClose() {
+    // Cleanup listeners
+    _usernameTextController.removeListener(_validateForm);
+    _emailTextController.removeListener(_validateForm);
+    _passwordTextController.removeListener(_validateForm);
+    _confirmPasswordTextController.removeListener(_validateForm);
+    _fullNameTextController.removeListener(_validateForm);
+    _displayNameTextController.removeListener(_validateForm);
+
+    // Dispose controllers
     _usernameTextController.dispose();
     _emailTextController.dispose();
     _passwordTextController.dispose();
     _confirmPasswordTextController.dispose();
     _fullNameTextController.dispose();
     _displayNameTextController.dispose();
+
     super.onClose();
   }
 }

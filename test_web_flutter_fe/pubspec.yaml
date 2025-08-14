@@ -57,6 +57,7 @@ dependencies:
   flutter_alice: ^1.1.1
   json_annotation: ^4.9.0
   json_serializable: ^6.9.0
+  google_sign_in: ^7.1.1
 
 dev_dependencies:
   flutter_test:
