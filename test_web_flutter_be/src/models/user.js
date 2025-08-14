@@ -1,7 +1,5 @@
-import { required } from 'joi';
-
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose' // Thay thế require
+import bcrypt from 'bcryptjs' // Thay thế require
 
 const userSchema = new mongoose.Schema({
   userName: {
@@ -50,12 +48,14 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 12);
+  if (this.password && this.isModified('password')) { // Thêm check password exists
+    this.password = await bcrypt.hash(this.password, 12);
+  }
   next();
 });
 
 userSchema.methods.comparePassword = async function(candidatePassword) {
+  if (!this.password) return false; // Thêm check password exists
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
@@ -63,4 +63,3 @@ const User = mongoose.model('User', userSchema);
 
 export { userSchema }
 export default User;
-

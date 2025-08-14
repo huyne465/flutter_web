@@ -24,6 +24,7 @@ import 'module/startup/login/data/datasources/user_dataSource.dart' as _i1040;
 import 'module/startup/login/data/repository/user_remote_dataSource.dart'
     as _i75;
 import 'module/startup/login/data/repository/user_repo_impl.dart' as _i184;
+import 'module/startup/login/data/service/google_auth_service.dart' as _i199;
 import 'module/startup/login/data/service/user_service.dart' as _i1062;
 import 'module/startup/login/domain/repositories/user_repository.dart' as _i854;
 import 'module/startup/login/domain/usecase/login_usecase.dart' as _i922;
@@ -37,6 +38,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final appModule = _$AppModule();
+    gh.factory<_i199.GoogleAuthService>(() => _i199.GoogleAuthService());
     gh.lazySingleton<_i749.LoadingHelper>(() => _i749.LoadingHelper());
     gh.lazySingleton<_i1017.EventBus>(() => appModule.getEventBus());
     gh.lazySingleton<_i361.Dio>(() => appModule.getDio());
@@ -54,14 +56,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i484.RegisterUsecase>(
       () => _i484.RegisterUsecase(gh<_i1040.UserDataSource>()),
     );
-    gh.factory<_i479.LoginViewModel>(
-      () => _i479.LoginViewModel(gh<_i922.LoginUsecase>()),
-    );
     gh.lazySingleton<_i854.UserRepository>(
       () => _i184.UserRepositoryImpl(gh<_i1040.UserDataSource>()),
     );
     gh.factory<_i359.RegisterViewModel>(
       () => _i359.RegisterViewModel(gh<_i484.RegisterUsecase>()),
+    );
+    gh.factory<_i479.LoginViewModel>(
+      () => _i479.LoginViewModel(
+        gh<_i922.LoginUsecase>(),
+        gh<_i199.GoogleAuthService>(),
+      ),
     );
     return this;
   }

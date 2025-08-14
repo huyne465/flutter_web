@@ -1,5 +1,5 @@
 import { authService } from "~/services/authService";
-
+import { jwtUtils } from "~/utils/jwt";
 // Controller for handling authentication routes
 const createUser = async (req, res) => {
   try {

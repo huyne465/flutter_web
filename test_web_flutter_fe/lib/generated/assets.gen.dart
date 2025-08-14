@@ -261,11 +261,14 @@ class $ResourcesImagesGen {
   /// File path: resources/images/bg_login.png
   AssetGenImage get bgLogin => const AssetGenImage('resources/images/bg_login.png');
 
+  /// File path: resources/images/google.png
+  AssetGenImage get google => const AssetGenImage('resources/images/google.png');
+
   /// File path: resources/images/logo.png
   AssetGenImage get logo => const AssetGenImage('resources/images/logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [aki, bgLogin, logo];
+  List<AssetGenImage> get values => [aki, bgLogin, google, logo];
 }
 
 class $ResourcesLangsGen {

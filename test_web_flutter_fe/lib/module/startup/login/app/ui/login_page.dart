@@ -9,6 +9,7 @@ import 'package:test_web_flutter_fe/generated/assets.gen.dart';
 import 'package:test_web_flutter_fe/generated/locale_keys.g.dart';
 import 'package:test_web_flutter_fe/injector.dart';
 import 'package:test_web_flutter_fe/module/startup/login/app/ui/widgets/normal_login_widget.dart';
+import 'package:test_web_flutter_fe/module/startup/login/app/ui/widgets/google_icon_widget.dart';
 import 'package:test_web_flutter_fe/module/startup/login/app/viewModel/login_viewModel.dart';
 
 class LoginPage extends StatefulWidget {
@@ -101,6 +102,103 @@ class _LoginPageState extends ViewState<LoginPage, LoginViewModel> {
             ),
           ),
           SizedBox(height: 20.h),
+
+          // Divider với text "Hoặc"
+          Row(
+            children: [
+              Expanded(
+                child: Divider(
+                  color: const Color.fromRGBO(177, 177, 177, 1),
+                  thickness: 1,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Text(
+                  'Hoặc',
+                  style: TextStyle(
+                    color: const Color.fromRGBO(177, 177, 177, 1),
+                    fontSize: 14.sp,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Divider(
+                  color: const Color.fromRGBO(177, 177, 177, 1),
+                  thickness: 1,
+                ),
+              ),
+            ],
+          ),
+
+          SizedBox(height: 20.h),
+
+          // Google Sign-In Button
+          ElevatedButton(
+            onPressed: () {
+              viewModel.signInWithGoogle();
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              minimumSize: Size(double.infinity, 48.h),
+              backgroundColor: Colors.white,
+              side: const BorderSide(
+                color: Color.fromRGBO(221, 221, 221, 1),
+                width: 1,
+              ),
+              elevation: 0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ImageIcon(
+                  Assets.resources.images.google.image().image,
+                  size: 20.w,
+                  color: const Color.fromRGBO(60, 60, 60, 1),
+                ),
+                SizedBox(width: 12.w),
+                Text(
+                  'Đăng nhập bằng Google',
+                  style: TextStyle(
+                    color: const Color.fromRGBO(60, 60, 60, 1),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 24.h),
+
+          // Register Link
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Chưa có tài khoản? ',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: const Color.fromRGBO(177, 177, 177, 1),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed('/register');
+                },
+                child: Text(
+                  'Đăng ký ngay',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: const Color.fromRGBO(55, 120, 218, 1),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       );
     } else {

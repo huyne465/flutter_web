@@ -1,6 +1,7 @@
 import express from 'express';
 import { authController } from '~/controllers/authController';
 import { authValidation } from '~/validations/authValidation';
+import passport from '~/config/passport';
 
 const authRoutes = express.Router();
 authRoutes.post('/create-user', authValidation.createUser,authController.createUser);
