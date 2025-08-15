@@ -11,5 +11,12 @@ DEMO signIn with google
 https://github.com/user-attachments/assets/20ed666c-8469-4c52-beaf-658892ab55fd
 
 
+DEMO websocket chatting feature
+
+
+https://github.com/user-attachments/assets/f85c18e9-158a-4d4f-8911-1369036c62f7
+
+
+
 
 
