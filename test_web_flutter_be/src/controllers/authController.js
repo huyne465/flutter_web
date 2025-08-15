@@ -43,7 +43,7 @@ const createUser = async (req, res) => {
   }
 }
 
-// Controller for handling user login
+// Thêm endpoint để login thường trả về JWT token
 const loginUser = async (req, res) => {
     try {
         const { userName, password } = req.body;
@@ -53,21 +53,23 @@ const loginUser = async (req, res) => {
             return res.status(404).json({ error: "User not found", success: false, message: "Invalid username or password" });
         }
 
-        //check password
         const isPasswordValid = await user.comparePassword(password);
         if (!isPasswordValid) {
             return res.status(401).json({ error: "Invalid credentials", success: false, message: "Invalid username or password" });
         }
         
-        //check if user's account is active
         if (!user.isActive) {
             return res.status(403).json({ error: "User is inactive", success: false, message: "User account is inactive" });
         }
+
+        // Generate JWT token
+        const token = jwtUtils.generateJWT(user)
 
         const {password: userPassword, ...userResponse} = user.toObject();
 
         res.status(200).json({
             data: userResponse,
+            token: token, // Thêm JWT token vào response
             success: true,
             message: "Login successful"
         });
@@ -126,8 +128,9 @@ const googleSuccess = async (req, res) => {
     // Remove sensitive data
     const { password, googleId, ...userResponse } = user.toObject()
 
-    // Redirect to frontend with token
-    res.redirect(`http://localhost:8080/auth/success?token=${token}&user=${encodeURIComponent(JSON.stringify(userResponse))}`)
+    // Redirect to frontend with token and user data
+    const userData = encodeURIComponent(JSON.stringify(userResponse))
+    res.redirect(`http://localhost:8080/auth/success?token=${token}&user=${userData}`)
     
   } catch (error) {
     console.error('Google auth success error:', error)

@@ -1,4 +1,4 @@
-import { socketAuth, socketGuestAuth } from './middlewares/auth.js'
+import { socketAuth, socketGuestAuth, authenticateSocketUser, grantGuestAccess } from './middlewares/auth.js'
 import { socketLogger } from './middlewares/logger.js'
 import { socketRateLimit } from './middlewares/rateLimit.js'
 import { chatHandlers } from './handlers/chat.js'
@@ -16,7 +16,7 @@ export const initializeSocket = (io) => {
     // Handle authentication
     socket.on('authenticate', async (data) => {
       try {
-        await socketAuth(socket, data)
+        const user = await authenticateSocketUser(socket, data)
         
         // After successful authentication, setup authenticated handlers
         chatHandlers(socket, io)
@@ -25,14 +25,14 @@ export const initializeSocket = (io) => {
         socket.emit('auth_success', {
           message: 'Authentication successful',
           user: {
-            id: socket.user._id,
-            userName: socket.user.userName,
-            displayName: socket.user.displayName,
-            email: socket.user.email
+            id: user._id,
+            userName: user.userName,
+            displayName: user.displayName,
+            email: user.email
           }
         })
 
-        console.log(`✅ User ${socket.user.userName} authenticated successfully`)
+        console.log(`✅ User ${user.userName} authenticated successfully`)
         
       } catch (error) {
         socket.emit('auth_error', { 
@@ -45,11 +45,16 @@ export const initializeSocket = (io) => {
     // Handle guest access (limited functionality)
     socket.on('guest_access', async () => {
       try {
-        await socketGuestAuth(socket)
+        const guestUser = await grantGuestAccess(socket)
         
         // Setup limited guest handlers (read-only chat, etc.)
         socket.emit('guest_access_granted', {
           message: 'Guest access granted',
+          user: {
+            id: guestUser._id,
+            userName: guestUser.userName,
+            displayName: guestUser.displayName
+          },
           limitations: ['No chat sending', 'Read-only access']
         })
 

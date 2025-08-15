@@ -46,6 +46,46 @@ export const socketAuth = async (socket, next) => {
   }
 }
 
+// Authenticate user with token from client event
+export const authenticateSocketUser = async (socket, data) => {
+  try {
+    console.log('🔐 Authenticating socket user:', socket.id, 'with data:', data)
+    
+    const token = data?.token
+    
+    if (!token) {
+      throw new Error('No token provided')
+    }
+
+    // Verify JWT token
+    const decoded = jwtUtils.verifyJWT(token)
+    if (!decoded) {
+      throw new Error('Invalid token')
+    }
+
+    // Lấy user từ database
+    const user = await User.findById(decoded.id).select('-password')
+    if (!user) {
+      throw new Error('User not found')
+    }
+
+    if (!user.isActive) {
+      throw new Error('User account is inactive')
+    }
+
+    // Attach user to socket object
+    socket.user = user
+    socket.userId = user._id.toString()
+    
+    console.log('✅ Socket user authenticated successfully:', socket.id, 'User:', user.userName)
+    return user
+    
+  } catch (error) {
+    console.error('❌ Socket user auth error:', error.message)
+    throw error
+  }
+}
+
 // Optional: Guest access middleware (cho anonymous users)
 export const socketGuestAuth = (socket, next) => {
   console.log('🔓 Socket Guest Access for:', socket.id)
@@ -60,4 +100,29 @@ export const socketGuestAuth = (socket, next) => {
   socket.userId = socket.id
   
   next()
+}
+
+// Guest access function for events
+export const grantGuestAccess = async (socket) => {
+  try {
+    console.log('👤 Granting guest access to socket:', socket.id)
+    
+    // Set guest user data
+    socket.user = {
+      _id: `guest_${socket.id}`,
+      userName: `Guest_${socket.id.substring(0, 6)}`,
+      displayName: `Guest User`,
+      email: null,
+      isGuest: true
+    }
+    socket.userId = socket.user._id
+    socket.isGuest = true
+    
+    console.log('✅ Guest access granted:', socket.id)
+    return socket.user
+    
+  } catch (error) {
+    console.error('❌ Guest access error:', error.message)
+    throw error
+  }
 }

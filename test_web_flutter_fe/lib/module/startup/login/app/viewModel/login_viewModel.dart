@@ -87,8 +87,8 @@ class LoginViewModel extends AppViewModel {
               child: const Icon(Icons.check, color: Colors.white),
             ),
           );
-          // Navigate back to dashboard
-          Get.offNamed(AppRoutes.dashboard);
+          // Navigate back to socket test page
+          Get.offNamed(AppRoutes.socketPage);
         }
       },
       shouldShowLoading: true,
@@ -154,7 +154,7 @@ class LoginViewModel extends AppViewModel {
         );
 
         // Navigate to dashboard
-        Get.offNamed(AppRoutes.dashboard);
+        Get.offNamed(AppRoutes.socketPage);
       } else {
         throw Exception('Token không hợp lệ');
       }

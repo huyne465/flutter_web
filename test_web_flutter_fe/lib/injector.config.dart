@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
 import 'package:event_bus/event_bus.dart' as _i1017;
+import 'package:flutter/material.dart' as _i409;
 import 'package:flutter_alice/alice.dart' as _i934;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -18,6 +19,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'core/clean_arch_setup/http_setup/http_wrapper.dart' as _i746;
 import 'core/helper/loading_helper.dart' as _i749;
 import 'injector.dart' as _i811;
+import 'module/startup/login/app/ui/socketTest_page.dart' as _i636;
 import 'module/startup/login/app/viewModel/login_viewModel.dart' as _i479;
 import 'module/startup/login/app/viewModel/register_viewModel.dart' as _i359;
 import 'module/startup/login/data/datasources/user_dataSource.dart' as _i1040;
@@ -25,6 +27,7 @@ import 'module/startup/login/data/repository/user_remote_dataSource.dart'
     as _i75;
 import 'module/startup/login/data/repository/user_repo_impl.dart' as _i184;
 import 'module/startup/login/data/service/google_auth_service.dart' as _i199;
+import 'module/startup/login/data/service/socket_service.dart' as _i245;
 import 'module/startup/login/data/service/user_service.dart' as _i1062;
 import 'module/startup/login/domain/repositories/user_repository.dart' as _i854;
 import 'module/startup/login/domain/usecase/login_usecase.dart' as _i922;
@@ -47,8 +50,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i934.Alice>(() => appModule.getAlice());
     gh.lazySingleton<_i1062.UserService>(() => _i1062.UserService());
+    gh.factory<_i245.SocketService>(
+      () => _i245.SocketService(gh<_i199.GoogleAuthService>()),
+    );
     gh.lazySingleton<_i1040.UserDataSource>(
       () => _i75.UserRemoteDatasource(gh<_i1062.UserService>()),
+    );
+    gh.factory<_i636.SocketTestPage>(
+      () => _i636.SocketTestPage(
+        key: gh<_i409.Key>(),
+        socketService: gh<_i245.SocketService>(),
+        authService: gh<_i199.GoogleAuthService>(),
+      ),
     );
     gh.lazySingleton<_i922.LoginUsecase>(
       () => _i922.LoginUsecase(gh<_i1040.UserDataSource>()),

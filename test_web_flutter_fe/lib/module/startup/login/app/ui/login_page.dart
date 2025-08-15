@@ -9,7 +9,6 @@ import 'package:test_web_flutter_fe/generated/assets.gen.dart';
 import 'package:test_web_flutter_fe/generated/locale_keys.g.dart';
 import 'package:test_web_flutter_fe/injector.dart';
 import 'package:test_web_flutter_fe/module/startup/login/app/ui/widgets/normal_login_widget.dart';
-import 'package:test_web_flutter_fe/module/startup/login/app/ui/widgets/google_icon_widget.dart';
 import 'package:test_web_flutter_fe/module/startup/login/app/viewModel/login_viewModel.dart';
 
 class LoginPage extends StatefulWidget {
