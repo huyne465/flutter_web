@@ -1,13 +1,20 @@
 import express from 'express'
 import { CONNECT_DB, CLOSE_DB } from '~/config/database'
 import { env } from '~/config/config'
+import { createServer } from 'http'
 import { authRoutes } from '~/routes/v1/auth'
 import session from 'express-session'
-import passport from '~/config/passport' // Import passport config
+import passport from '~/config/passport'
 import cors from 'cors'
+import { Server } from 'socket.io'
+import { initializeSocket } from './socket/mainSocket.js'
 
 const START_SERVER = () => {
   const app = express()
+
+
+    // Tạo HTTP server để share với Socket.IO
+  const server = createServer(app)
 
   const hostname = env.APP_HOST
   const port = env.APP_PORT
@@ -38,6 +45,21 @@ const START_SERVER = () => {
   // Passport middleware - THÊM 2 DÒNG NÀY
   app.use(passport.initialize())
   app.use(passport.session())
+  
+  // Initialize Socket.IO
+  const io = new Server(server, {
+    cors: {
+      origin: ['http://localhost:8080', 'http://127.0.0.1:8080'],
+      methods: ['GET', 'POST'],
+      credentials: true
+    },
+    transports: ['websocket', 'polling']
+  })
+  
+  // Setup Socket.IO handlers
+  initializeSocket(io)
+  global.socketIO = io // Make available globally
+
 
   // Test route
   app.get('/api/auth/test', (req, res) => { 
@@ -48,7 +70,8 @@ const START_SERVER = () => {
         login: 'POST /api/auth/login',
         googleAuth: 'GET /api/auth/google', // Thêm Google endpoint
         getUsers: 'GET /api/auth/users',
-        getUser: 'GET /api/auth/user/:id'
+        getUser: 'GET /api/auth/user/:id',
+        socketAuth:'WS /authenticated (requires JWT token)',
       }
     })
   })
@@ -66,8 +89,10 @@ const START_SERVER = () => {
     })
   })
 
-  app.listen(port, hostname, () => {
+  // Sử dụng server thay vì app.listen
+  server.listen(port, hostname, () => {
     console.log(`🚀 Hello ${env.DATABASE_NAME}, Server is running at http://${hostname}:${port}/`)
+    console.log(`🔌 Socket.IO server is ready for connections`)
   })
 
   process.on('SIGINT', async () => {
